@@ -1,0 +1,59 @@
+.section {
+    color: white;
+    padding:1em;
+}
+
+#findRepresentative  {
+    background-color: #2980B9;
+}
+
+.section h2 {
+    margin:0;
+    padding:1em;
+}
+
+#meetRepresentatives {
+	background-color: #E74C3C;
+}
+
+#meetCandidates {
+	background-color: #F1C40F;
+}
+
+#registerToVote {
+	background-color: #2ECC71;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+fill-white {
+    fill:white;
+}
+
+.candidate {
+	text-align:center;
+	color: black;
+	background-color:white;
+	padding:1em;
+	margin:1em;
+	box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
+}
+
+.candidate:hover {
+	box-shadow: 5px 5px 7px rgba(0,0,0,0.2);
+}
+
+.candidate #name {
+	font-size:1.3em;
+	margin:0;
+	padding:0;
+}
+
+.candidate img {
+	width: 140px;
+	height: 140px;
+}

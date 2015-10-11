@@ -1,0 +1,19 @@
+{
+  "name": "wnycivichack_2015",
+  "version": "1.0.0",
+  "description": "A project for the WNY Civic Hack 2015",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": "wnycivichack_2015",
+  "author": "Nicholas A. Yager",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^3.3.5",
+    "express": "^4.13.3",
+    "mysql": "^2.9.0",
+    "pdffiller": "0.0.7",
+    "request": "^2.64.0"
+  }
+}
