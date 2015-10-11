@@ -1,10 +1,12 @@
 .section {
     color: white;
     padding:1em;
+    clear: both;
 }
 
 #findRepresentative  {
     background-color: #2980B9;
+    clear: both;
 }
 
 .section h2 {
@@ -14,10 +16,12 @@
 
 #meetRepresentatives {
 	background-color: #E74C3C;
+    clear: both;
 }
 
 #meetCandidates {
 	background-color: #F1C40F;
+    clear: both;
 }
 
 #registerToVote {
@@ -56,4 +60,26 @@ fill-white {
 .candidate img {
 	width: 140px;
 	height: 140px;
+}
+
+.failure {
+    margin-left:1em;
+}
+
+.has-error {
+    color: #e74c3c;
+    border-color: #e74c3c;
+    box-shadow: none;
+}
+
+.form-group div {
+    padding:0.1em;
+}
+
+.DEM {
+    background-color: blue;
+}
+
+.REP {
+    background-color: red;
 }

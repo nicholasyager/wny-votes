@@ -1,151 +1,155 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="wnyVotes">
 
-	</head>
+    </head>
 
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>WNY Votes</title>
-	<!-- Latest compiled and minified CSS -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <title>WNY Votes</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-	<script type="text/javascript" 
-    src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"> </script>   
+    <script type="text/javascript" 
+            src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"> </script>   
+    <script src="js/wnyVotes.js"></script>
 
-	<!-- Optional theme -->
-	<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
-	<link rel="stylesheey" href="css/flat-ui.min.css">
-	<link rel="stylesheet" href="css/carousel.css">
-	<link rel=stylesheet href=css/app.css >
+    <!-- Optional theme -->
+    <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
+    <link rel="stylesheey" href="css/flat-ui.min.css">
+    <link rel="stylesheet" href="css/carousel.css">
+    <link rel=stylesheet href=css/app.css >
 
-	<!-- Latest compiled and minified JavaScript -->
-	</head>
+    <!-- Latest compiled and minified JavaScript -->
+    </head>
 
-	<body>
-		<div ng-app>
-		<nav class="navbar navbar-inverse navbar-fixed-top">
-			<div class="container">
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">WNY Votes</a>
-				</div>
-				<div id="navbar" class="navbar-collapse collapse">
-					<ul class="nav navbar-nav">
-						<li class="active"><a href="#">Home</a></li>
-						<li><a href="#about">About</a></li>
-						<li><a href="#contact">Contact</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li role="separator" class="divider"></li>
-								<li class="dropdown-header">Nav header</li>
-								<li><a href="#">Separated link</a></li>
-								<li><a href="#">One more separated link</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div><!--/.nav-collapse -->
-			</div>
-		</nav>
-		<div id="myCarousel" class="carousel slide" data-ride="carousel">
-			<div class="carousel-inner" role="listbox">
-				<div class="item active">
-					<img class="first-slide" src="images/skyline.jpg" alt="Western NY Skyline">
-					<div class="container">
-						<div class="carousel-caption">
-							<h1>WNY Votes</h1>
-							<p>Learn about WNY politicians, register to vote, and participate in WNY Government.</p>
-							<p>
-							<a class="btn btn-lg btn-primary" href="#" role="button">Find your Representatives and Candidates</a>
-							<a class="btn btn-lg btn-success" href="#" role="button">Register to Vote</a>
-							</p>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<div id=findRepresentative class="section">
-			<h2>Find Your Representatives and Candidates</h2>
-			<div class=row>
-				<div class=col-sm-1></div>
-				<div id="formDiv" class="col-sm-6 vcenter">
-					<input id=streetAddress1 type=text class=form-control placeholder="Street Address 1" /><br>
-					<input id=streetAddress2 type=text class=form-control placeholder="Street Address 2" /><br>
-					<input id=city type=text class=form-control placeholder="City" /> <br>
-					<button id=submitRepSearch class="btn btn-default">Search</button>
-				</div>
+    <body>
+        <div ng-app>
+            <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="item active">
+                        <img class="first-slide" src="images/skyline.jpg" alt="Western NY Skyline">
+                        <div class="container">
+                            <div class="carousel-caption">
+                                <h1>WNY Votes</h1>
+                                <p>Learn about WNY politicians, register to vote, and participate in WNY Government.</p>
+                                <p>
+                                <a class="btn btn-lg btn-primary" href="#findRepresentative" role="button">Find your Representatives and Candidates</a>
+                                <a class="btn btn-lg btn-success" href="#registerToVote" role="button">Register to Vote</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-controller="Controller">
+                <div id=findRepresentative class="section">
+                    <h2>Find Your Representatives and Candidates</h2>
+                    <div class=row>
+                        <div class=col-sm-2></div>
+                        <div class="col-sm-4 vcenter">
+                            <form id="formDiv">
+                                <div class="row">
+                                    <div class=form-group>
+                                        <div class=col-xs-2>
+                                            <input ng-model="location.address" type=text class="form-control" placeholder="100" />
+                                        </div>
+                                        <div class=col-xs-7>
+                                            <input ng-model="location.street" type=text class="form-control" placeholder="Ellicott" />
+                                        </div>
+                                        <div class=col-xs-3>
+                                            <input ng-model="location.type" type=text class="form-control" placeholder="Street" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group">
+                                        <div class=col-xs-6>
+                                            <input ng-model="location.city" type=text class="form-control" placeholder="Buffalo" />
+                                        </div>
+                                        <div class=col-xs-6>
+                                            <input ng-model="location.zipcode" type=text class="form-control" placeholder="14216" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=row>
+                                    <div class=col-xs-5></div>
+                                    <button ng-click="search(location)" id=submitRepSearch class="btn btn-default col-xs-2">Search</button><span class="failure">{{alert}}</span>
+                                    <div class=col-xs-5></div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="col-sm-2 vcenter"></div>
+                        <div id="map" class="col-sm-3 vcenter">
+                            <img src="images/SVGs/legislative_districts.svg"alt=districtmape width=100% />
+                        </div>
+                        <div class=col-sm-1></div>
+                    </div>
+                </div>
+                <div id=meetRepresentatives class=section>
+                    <h2>Meet Your Elected Officials</h2>
+                    <div class="row">
+                        <div class='candidateContainer col-md-3 col-sm-5' ng-repeat="office in offices | orderBy:'-level'">
+                            <a href="{{office.website}}">
+                                <div class="candidate" >
+                                    <span class="label label-{{office.person.politicalParty}} pull-right"> </span>
+                                    <p id=name>{{office.person.firstName}} {{office.person.middleName}} {{office.person.lastName}}</p>
+                                    <p id=title>{{office.title}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
 
-				<div class="col-sm-1 vcenter"></div>
-				<div id="map" class="col-sm-3 vcenter">
-					<img src="images/SVGs/legislative_districts.svg"alt=districtmape width=100% />
-				</div>
-				<div class=col-sm-1></div>
-				<div id="repInfo" class="hidden">
-				</div>
-			</div>
-		</div>
-		<div id=meetRepresentatives class=section>
-			<h2>Meet Your Representatives</h2>
-		</div>
+                <div id=meetCandidates class=section>
+                    <h2>Meet Your Candidates</h2>
+                </div>
+            </div>
+            <div id=registerToVote class=section>
+                <h2>Register To Vote</h2>
+            </div>
 
-		<div id=meetCandidates class=section>
-			<h2>Meet Your Candidates</h2>
-		</div>
-		<div id=registerToVote class=section>
-			<h2>Register To Vote</h2>
-		</div>
+        </div>
 
-		</div>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-		<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-		<!-- Include all compiled plugins (below), or include individual files as needed -->
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-		<script>
-
-
-
+        <script>
+/*
 function handleData(data) {
-	for (i = 0; i < data.length / 3; i++) {
-		$("#meetRepresentatives").append("<div id=row"+i+" class='row'></div>");
-	}
+for (i = 0; i < data.length / 3; i++) {
+$("#meetRepresentatives").append("<div id=row"+i+" class='row'></div>");
+}
 
-	$.each(data, function(index) {
-		var row = Math.floor(index / 4);
-		console.log(row);
-		$("#meetRepresentatives #row"+row).append("<div class='candidateContainer col-md-3 col-sm-5'><div class=candidate><p id=name>"+this.first_name+" "+this.middle_name+" "+this.last_name+"</p><p id=title>"+this.office+" ("+this.party+")</p></div></div>");
-		console.log(this);
-	});
+$.each(data, function(index) {
+var row = Math.floor(index / 4);
+console.log(row);
+$("#meetRepresentatives #row"+row).append("<div class='candidateContainer col-md-3 col-sm-5'><div class=candidate><p id=name>"+this.first_name+" "+this.middle_name+" "+this.last_name+"</p><p id=title>"+this.office+" ("+this.party+")</p></div></div>");
+console.log(this);
+});
 }
 
 $(document).ready(function(){
 
-	$("#submitRepSearch").click(function() {
-		$("#meetRepresentatives div").remove();
-		$.ajax({
-			type: "GET",
-			url: '/representatives?city='+$("#city").val(),
-			complete: function(data) {
-				handleData(data.responseJSON);
-			}
-		});
-	});
-	// jQuery methods go here...
-
+$("#submitRepSearch").click(function() {
+$("#meetRepresentatives div").remove();
+$.ajax({
+type: "GET",
+url: '/representatives?city='+$("#city").val(),
+complete: function(data) {
+handleData(data.responseJSON);
+}
 });
-		</script>
+});
+                                    // jQuery methods go here...
 
-	</body>
+                                    })
+ */;
+        </script>
+
+    </body>
 
 </html>

@@ -3,11 +3,11 @@ import json
 import requests
 import csv
 import MySQLdb
-import urllib
+import os
 
-db = MySQLdb.connect(host = 'localhost',
-                     user = 'wny_votes',
-                     passwd = 'yagerbomb93',
+db = MySQLdb.connect(host = '192.168.0.111',
+                     user = os.getenv("DBUSER"),
+                     passwd = os.getenv("DBPASS"),
                      db = 'wny_votes')
 
 cur = db.cursor()
@@ -42,6 +42,7 @@ for district in jsonDat["districts"]:
                             officeJSON["person"]["address"]["zip"]])
 
                 website = officeJSON["office"]["website"]
+                order = office["district"]["level"]["sortOrder"]
                 
                 if "officeHolder" in officeJSON["office"]:
                     party = officeJSON["office"]["officeHolder"]["politicalParty"]["partyAbbreviation"]
@@ -57,7 +58,8 @@ for district in jsonDat["districts"]:
                                          emailAddress,
                                          address,
                                          website,
-                                         party
+                                         party,
+                                         order
                                         ]
 
                 if phoneNumber == "":
@@ -67,7 +69,7 @@ for district in jsonDat["districts"]:
                 lastName = lastName.replace("'", "")
 
 
-                query = "INSERT INTO offices VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}');".format(getMuni(district["name"]),
+                query = "INSERT INTO offices VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', '{6}', '{7}', '{8}', '{9}', '{10}');".format(getMuni(district["name"]),
                                          office["internalDisplay"],
                                          firstName,
                                          middleName,
@@ -76,13 +78,14 @@ for district in jsonDat["districts"]:
                                          emailAddress,
                                          address,
                                          website,
-                                         party)
+                                         party,
+                                         str(order))
                 print(query) 
                 cur.execute(query)
                 db.commit()
 
 
-                print(",".join(offices[office["id"]]))
+                #print(",".join(offices[office["id"]]))
             except KeyError:
                 pass
 
