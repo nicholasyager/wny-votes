@@ -1,10 +1,14 @@
+.btn {
+    margin:0.25em;
+}
+
 .section {
     color: white;
     padding:1em;
     clear: both;
 }
 
-#findRepresentative  {
+#findCandidates  {
     background-color: #2980B9;
     clear: both;
 }
@@ -14,12 +18,12 @@
     padding:1em;
 }
 
-#meetRepresentatives {
+#meetCandidates {
 	background-color: #E74C3C;
     clear: both;
 }
 
-#meetCandidates {
+#pollingLocation {
 	background-color: #F1C40F;
     clear: both;
 }
@@ -82,4 +86,16 @@ fill-white {
 
 .REP {
     background-color: red;
+}
+
+.GRE {
+    background-color: green;
+}
+
+input {
+    margin-bottom:5px;
+}
+
+#formDiv > div > div > div {
+    padding:2px;
 }

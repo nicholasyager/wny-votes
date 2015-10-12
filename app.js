@@ -11,24 +11,22 @@ var sourcePDF = "public/pdf/vote_en.pdf";
    console.log(fdfData);
    });
    */
-/*
-   var mysql      = require('mysql');
-   var connection = mysql.createConnection({
-   host     : '192.168.0.111',
-   user     : process.env.DBUSER,
-   password : process.env.DBPASS,
-   database : "wny_votes"
-   });
-
-   connection.connect(function(err) {
-// connected! (unless `err` is set)
-if (err == null) {
-console.log("Connected to MySQL DB.");
-} else {
-console.log(err);
-}
+var mysql      = require('mysql');
+var connection = mysql.createConnection({
+    host     : '192.168.0.111',
+    user     : process.env.DBUSER,
+    password : process.env.DBPASS,
+    database : "wny_votes"
 });
-*/
+
+connection.connect(function(err) {
+    // connected! (unless `err` is set)
+    if (err == null) {
+        console.log("Connected to MySQL DB.");
+    } else {
+        console.log(err);
+    }
+});
 
 var testCandidates = {
     candidates : [
@@ -48,37 +46,24 @@ var testCandidates = {
         res.send('hello world');
     });
 
-app.post('/register', function(req, res) {
-    res.send('{status:"recieved"}');
-});
-/*
-   app.get('/representatives', function(req, res) {
-   city = req.query.city.toLowerCase();
+app.get('/candidates', function(req, res) {
 
+    var query = connection.query('SELECT * FROM candidates ' +
+            'LEFT OUTER JOIN municipalities ON municipalities.town = candidates.municipality '+
+            'WHERE municipalities.town = "'+req.query.municipality+'" OR '+
+            'candidates.municipality LIKE "%Erie%"', function(err, result) {
+                // Neat!
+                console.log(err);
+                console.log(query.sql);
+                console.log(result);
+                if (result.length < 1) {
+                    res.status(400).send("Location not found. Please try again.");
+                    return;
+                }
 
-   var query = connection.query('SELECT town FROM municipalities WHERE LCASE(municipality) = "'+city+'"', function(err, result) {
-// Neat!
-console.log(err);
-console.log(query);
-console.log(result);
-if (result.length < 1) {
-res.status(400).send("Location not found. Please try again.");
-return;
-}
-town = result[0].town;  
-var query = connection.query('SELECT * FROM offices WHERE LCASE(municipality) LIKE "%'+
-city+'%" or LCASE(municipality) in ("erie county","erie county legislators") order by sortOrder desc;', function(err, result) {
-// Neat!
-console.log(err);
-console.log(query.sql);
-console.log(result);
-res.json(result);
+                res.json(result);
+            });
 });
-
-});
-
-});
-*/
 
 app.get("/official", function(req, res) {
     request.get("https://www.elections.erie.gov/ce/mobile/seam/resource/rest/voter/getelectedofficial?officeId="+req.query.officeId,
@@ -109,6 +94,7 @@ app.get("/office", function(req, res) {
                     district = raw_data.districts[districtIndex];
                     for (var officeIndex = 0; officeIndex < district.offices.length; officeIndex++) {
                         office = district.offices[officeIndex];
+
                         var official = {
                             level : office.district.level.sortOrder,
                             id : office.id,
