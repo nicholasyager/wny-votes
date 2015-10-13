@@ -53,9 +53,6 @@ app.get('/candidates', function(req, res) {
             'WHERE municipalities.town = "'+req.query.municipality+'" OR '+
             'candidates.municipality LIKE "%Erie%"', function(err, result) {
                 // Neat!
-                console.log(err);
-                console.log(query.sql);
-                console.log(result);
                 if (result.length < 1) {
                     res.status(400).send("Location not found. Please try again.");
                     return;
@@ -77,6 +74,25 @@ app.get("/official", function(req, res) {
             });
 });
 
+app.get("/pollingLocation", function(req, res) {
+    request.get("https://www.elections.erie.gov/ce/mobile/seam/resource/rest/precinct/precinctdetail?precinctId="+req.query.precinct,
+            { headers : {
+                            "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"
+                        }
+            }, function(err, response, body) {
+
+                if (err != null || response.statusCode != 200) {
+                    console.log(err);
+                    res.status(500).send(response);
+                    return;
+                }
+
+                raw_data = JSON.parse(body);
+                res.json(raw_data);
+            });
+
+});
+
 
 app.get("/office", function(req, res) {
     request.get("https://www.elections.erie.gov/ce/mobile/seam/resource/rest/voter/getelectedofficials?precinctId="+req.query.precinct,
@@ -84,7 +100,10 @@ app.get("/office", function(req, res) {
                             "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"
                         }
             }, function(err, response, body) {
-                console.log(body);
+                if (err != null) {
+                    res.status(500).send(response);
+                    return;
+                }
                 raw_data = JSON.parse(body.substring(5,body.length - 1));
 
                 officials = [];
@@ -127,7 +146,6 @@ app.get('/precinct', function(req, res) {
                     "User-Agent" : "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"
                 }
             }, function(err, response, body) {
-                console.log(body);
                 data = JSON.parse(body);
                 res.json(data.streets);
             });

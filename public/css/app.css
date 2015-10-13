@@ -1,31 +1,56 @@
+body {
+    overflow-x:hidden;
+}
+
 .btn {
-    margin:0.25em;
+	margin:0.25em;
 }
 
 .section {
-    color: white;
-    padding:1em;
-    clear: both;
+	display:block;
+	color: white;
+	padding:1em;
+	clear: both;
 }
 
+
 #findCandidates  {
-    background-color: #2980B9;
-    clear: both;
+	background-color: #2980B9;
+	clear: both;
+}
+
+.vertical-center{
+	display:flex;
+	align-items: center;
+	height:90%;
+	padding-top:100px;
+}
+
+.vertical-center .row {
+	width:100%;
+	margin:0;
 }
 
 .section h2 {
-    margin:0;
-    padding:1em;
+	margin:0;
+	padding:1em;
 }
+
+
 
 #meetCandidates {
 	background-color: #E74C3C;
-    clear: both;
+	clear: both;
 }
+
+#meetCandidates .row {
+	background-color: #E74C3C;
+}
+
 
 #pollingLocation {
 	background-color: #F1C40F;
-    clear: both;
+	clear: both;
 }
 
 #registerToVote {
@@ -33,16 +58,16 @@
 }
 
 .vcenter {
-    display: inline-block;
-    vertical-align: middle;
-    float: none;
+	display: inline-block;
+	vertical-align: middle;
+	float: none;
 }
 
 fill-white {
-    fill:white;
+	fill:white;
 }
 
-.candidate {
+.candidate, .card {
 	text-align:center;
 	color: black;
 	background-color:white;
@@ -51,12 +76,20 @@ fill-white {
 	box-shadow: 3px 3px 4px rgba(0,0,0,0.2);
 }
 
-.candidate:hover {
+.candidate p {
+	margin:0;
+}
+
+.candidate:hover, .card:hover {
 	box-shadow: 5px 5px 7px rgba(0,0,0,0.2);
 }
 
+.detail {
+	font-size:0.8em;
+}
+
 .candidate #name {
-	font-size:1.3em;
+	font-size:1.15em;
 	margin:0;
 	padding:0;
 }
@@ -67,35 +100,81 @@ fill-white {
 }
 
 .failure {
-    margin-left:1em;
+	margin-left:1em;
 }
 
 .has-error {
-    color: #e74c3c;
-    border-color: #e74c3c;
-    box-shadow: none;
+	color: #e74c3c;
+	border-color: #e74c3c;
+	box-shadow: none;
 }
 
 .form-group div {
-    padding:0.1em;
+	padding:0.1em;
+}
+
+.max-height {
+	height:100%;
+}
+
+.label {
+	background-color:darkgray;
+	position: absolute;
+	right: 11%;
+	top: 20%;
 }
 
 .DEM {
-    background-color: blue;
+	background-color: blue;
 }
 
 .REP {
-    background-color: red;
+	background-color: red;
 }
 
 .GRE {
-    background-color: green;
+	background-color: green;
 }
 
 input {
-    margin-bottom:5px;
+	margin-bottom:5px;
 }
 
 #formDiv > div > div > div {
-    padding:2px;
+	padding:2px;
+}
+
+.google-maps {
+	position: relative;
+	padding-bottom: 75%; // This is the aspect ratio
+	height: 0;
+	overflow: hidden;
+	max-height: 700px;
+}
+.google-maps iframe {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100% !important;
+	height: 100% !important;
+
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.glyphicon {
+	cursor: pointer;
+}
+
+#pollbutton {
+	margin-top:2em;
+	margin-bottom:6em;
+}
+
+#map {
+	max-height:25%
 }

@@ -48,6 +48,7 @@ width: auto;
     z-index: 10;
     background-color: rgba(0,0,0,0.5);
     padding:2em;
+    bottom:10%;
 }
 
 /* Declare heights because of positioning of img element */
@@ -68,6 +69,7 @@ width: auto;
     margin-right:auto;
     display:block;
 }
+
 
 /* MARKETING CONTENT
 -------------------------------------------------- */
