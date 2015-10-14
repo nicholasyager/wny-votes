@@ -1,5 +1,6 @@
 body {
     overflow-x:hidden;
+	background-color: #27AE60;
 }
 
 .btn {
@@ -54,7 +55,14 @@ body {
 }
 
 #registerToVote {
-	background-color: #2ECC71;
+	background-color: #27AE60;
+	padding:2em;
+}
+
+
+#registerToVote .row {
+	margin:0;
+	background-color: #27AE60;
 }
 
 .vcenter {

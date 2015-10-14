@@ -62,10 +62,28 @@ angular.module('wnyVotes', [])
 
 	};
 
+	$scope.register = function(applicant) {
+		console.log(applicant);
+		var responsePromise = $http.post("/register", applicant);
+
+		responsePromise.success(function(data, status, headers, config) {
+
+			$scope.applicantAlert = "";
+			$scope.applicnatAlertClass="";
+
+		});
+
+		responsePromise.error(function(data, status, headers, config) {
+			$scope.applicantAlert = data;
+			$scope.applicantAlertClass="has-error";
+		});
+
+	}
+
 	$scope.moveTo = function(id) {
 		console.log(id);
 		$location.hash(id);
-      	$anchorScroll();
+		$anchorScroll();
 	};
 
 

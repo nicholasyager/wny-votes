@@ -1,2 +1,3 @@
 *.swp
 *.R*
+node-modules/

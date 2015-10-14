@@ -3,14 +3,18 @@ var pdfFiller = require('pdffiller');
 var express = require('express');
 var app = express();
 
+var bodyParser = require('body-parser');
+var jsonParser = bodyParser.json();
+
 var sourcePDF = "public/pdf/vote_en.pdf";
 
-/*
-   var FDF_data = pdfFiller.generateFDFTemplate( sourcePDF, function(err, fdfData) { 
-   if (err) throw err;
-   console.log(fdfData);
-   });
-   */
+
+var FDF_data = pdfFiller.generateFDFTemplate( sourcePDF, function(err, fdfData) { 
+    if (err) throw err;
+    console.log(fdfData);
+});
+
+
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
     host     : '192.168.0.111',
@@ -151,7 +155,14 @@ app.get('/precinct', function(req, res) {
             });
 });
 
-app.get('/candidates', function(req, res) {
+app.post('/register', jsonParser, function(req, res) {
+    if (!req.body) return res.sendStatus(400);
+
+    console.log(req.body);
+
+    destinationFile = "public/pdf/"+ req.body.applicant.email +".pdf";
+
+    console.log(req.body);
 
     res.json([]);
 });

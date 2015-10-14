@@ -1,0 +1,368 @@
+---
+FieldType: Button
+FieldName: ClearForm
+FieldNameAlt: Clear Form
+FieldFlags: 65536
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: Are you a citizen of the US
+FieldFlags: 49152
+FieldJustification: Left
+FieldStateOption: No
+FieldStateOption: Off
+FieldStateOption: Yes
+---
+FieldType: Button
+FieldName: older on or before election day
+FieldFlags: 49152
+FieldJustification: Left
+FieldStateOption: No_2
+FieldStateOption: Off
+FieldStateOption: Yes_2
+---
+FieldType: Text
+FieldName: LastName
+FieldNameAlt: Last Name
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Suffix
+FieldNameAlt: Suffix
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: FirstName
+FieldNameAlt: First Name
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: MI
+FieldNameAlt: Middle Initial
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: BirthMonth
+FieldNameAlt: Birth Month
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 2
+---
+FieldType: Text
+FieldName: BirthDay
+FieldNameAlt: Birth Day
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 2
+---
+FieldType: Text
+FieldName: BirthYear
+FieldNameAlt: Birth Year
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 4
+---
+FieldType: Button
+FieldName: Sex
+FieldFlags: 49152
+FieldJustification: Left
+FieldStateOption: F
+FieldStateOption: M
+FieldStateOption: Off
+---
+FieldType: Text
+FieldName: TeleAreaCode
+FieldNameAlt: Telephone: Area Code
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 3
+---
+FieldType: Text
+FieldName: TelePrefix
+FieldNameAlt: Telephone: Prefix
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 3
+---
+FieldType: Text
+FieldName: Telephone
+FieldNameAlt: Telephone
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 4
+---
+FieldType: Text
+FieldName: RAddress
+FieldNameAlt: Address where you live
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: ResZip
+FieldNameAlt: Residential Zip Code
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 5
+---
+FieldType: Text
+FieldName: RCity/Town/Village
+FieldNameAlt: Residential City/Town/Village
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Choice
+FieldName: County
+FieldNameAlt: Please select your New York State county
+FieldFlags: 0
+FieldValue: Select your New York State County
+FieldValueDefault: Select your New York State County
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: MAddress
+FieldNameAlt: Mailing Address
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: POBox
+FieldNameAlt: PO Box
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: MailZip
+FieldNameAlt: Mailing Zip Code
+FieldFlags: 0
+FieldJustification: Left
+FieldMaxLength: 5
+---
+FieldType: Text
+FieldName: MCity/Town/Village
+FieldNameAlt: Mailing City/Town/Village
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: Have you voted before
+FieldFlags: 49152
+FieldJustification: Left
+FieldStateOption: No_3
+FieldStateOption: Off
+FieldStateOption: Yes_3
+---
+FieldType: Text
+FieldName: Year
+FieldNameAlt: Year last voted
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 4
+---
+FieldType: Text
+FieldName: VHName
+FieldNameAlt: Name Change
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: AddressChange
+FieldNameAlt: Address Change
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: CountyChange
+FieldNameAlt: County Change
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: New York State DMV number
+FieldNameAlt: New York State DMV number
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: On
+---
+FieldType: Text
+FieldName: DMV1
+FieldNameAlt: NYS Driver's License Number
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 9
+---
+FieldType: Button
+FieldName: Last four digits of your Social Security number
+FieldNameAlt: Last four digits of your Social Security number
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: On
+---
+FieldType: Text
+FieldName: SSN
+FieldNameAlt: Last four digits of social security number
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 4
+---
+FieldType: Button
+FieldName: I do not have a New York State drivers license or a Social Security number
+FieldNameAlt: I do not have a New York State driver&#8217;s license or a Social Security number
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: On
+---
+FieldType: Button
+FieldName: Choose a Party
+FieldFlags: 49152
+FieldJustification: Left
+FieldStateOption: 0
+FieldStateOption: 1
+FieldStateOption: 2
+FieldStateOption: 3
+FieldStateOption: 4
+FieldStateOption: 5
+FieldStateOption: 6
+FieldStateOption: 7
+FieldStateOption: 8
+FieldStateOption: 9
+FieldStateOption: Off
+FieldStateOption: Yes_3
+---
+FieldType: Text
+FieldName: OthParty
+FieldNameAlt: Other Party Name
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Button
+FieldName: I need to apply for
+FieldNameAlt: I need to apply for
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: On
+---
+FieldType: Button
+FieldName: I would like to be an
+FieldNameAlt: I would like to be an
+FieldFlags: 0
+FieldJustification: Left
+FieldStateOption: Off
+FieldStateOption: On
+---
+FieldType: Text
+FieldName: OLastName
+FieldNameAlt: Last Name for Organ Donation
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: OFName
+FieldNameAlt: First Name for Organ Donation
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: OMI
+FieldNameAlt: Middle Initial for Organ Donation
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: OSuffix
+FieldNameAlt: Suffix for Organ Donation
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: OAddress
+FieldNameAlt: Address for Organ Donation
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: OApt
+FieldNameAlt: Apartment Number for Organ Donation
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: OZip
+FieldNameAlt: Zip code for organ donation
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 5
+---
+FieldType: Text
+FieldName: City
+FieldNameAlt: City
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: OBirthYear
+FieldNameAlt: Birth year for organ donation
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 4
+---
+FieldType: Text
+FieldName: EyeColor
+FieldNameAlt: Eye color for organ donation
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: OHeightFeet
+FieldNameAlt: Height feet for organ donation
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 1
+---
+FieldType: Text
+FieldName: OHeightInches
+FieldNameAlt: Height Inches for organ donation
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 2
+---
+FieldType: Button
+FieldName: Sex_2
+FieldFlags: 49152
+FieldJustification: Left
+FieldStateOption: F_2
+FieldStateOption: M_2
+FieldStateOption: Off
+---
+FieldType: Text
+FieldName: OBirthMonth
+FieldNameAlt: Birth month for organ donation
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 2
+---
+FieldType: Text
+FieldName: OBirthDay
+FieldNameAlt: Birth day for organ donation
+FieldFlags: 8388608
+FieldJustification: Left
+FieldMaxLength: 2
+---
+FieldType: Text
+FieldName: Apt#
+FieldNameAlt: Apartment Number
+FieldFlags: 0
+FieldJustification: Left
+---
+FieldType: Text
+FieldName: Email
+FieldNameAlt: Email
+FieldFlags: 0
+FieldJustification: Left
