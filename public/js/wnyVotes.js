@@ -68,6 +68,13 @@ angular.module('wnyVotes', [])
 
 		responsePromise.success(function(data, status, headers, config) {
 
+
+            //blob = new Blob([data], {type: "application/pdf;charset=utf-8"}),
+            //saveAs(blob, "test.pdf");
+
+            var win = window.open(data.url, '_blank');
+            win.focus();
+
 			$scope.applicantAlert = "";
 			$scope.applicnatAlertClass="";
 

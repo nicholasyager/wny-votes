@@ -146,6 +146,15 @@ fill-white {
 
 input {
 	margin-bottom:5px;
+    z-index:2;
+}
+
+input < div {
+    z-index:2;
+}
+
+.radio {
+    z-index:0;
 }
 
 #formDiv > div > div > div {

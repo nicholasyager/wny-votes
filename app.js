@@ -1,19 +1,16 @@
 var request = require("request");
-var pdfFiller = require('pdffiller'); 
+//var fillPdf = require('fill-pdf'); 
+var pdfFiller = require("pdffiller");
 var express = require('express');
+var uuid = require('node-uuid');
 var app = express();
+
+var fs = require('fs');
 
 var bodyParser = require('body-parser');
 var jsonParser = bodyParser.json();
 
 var sourcePDF = "public/pdf/vote_en.pdf";
-
-
-var FDF_data = pdfFiller.generateFDFTemplate( sourcePDF, function(err, fdfData) { 
-    if (err) throw err;
-    console.log(fdfData);
-});
-
 
 var mysql      = require('mysql');
 var connection = mysql.createConnection({
@@ -155,18 +152,116 @@ app.get('/precinct', function(req, res) {
             });
 });
 
+var conversionMap = {
+    "firstName" : "FirstName"
+}
+
 app.post('/register', jsonParser, function(req, res) {
     if (!req.body) return res.sendStatus(400);
 
     console.log(req.body);
 
-    destinationFile = "public/pdf/"+ req.body.applicant.email +".pdf";
+    var destinationPDF = "public/pdf/"+ uuid.v1() +".pdf";
 
-    console.log(req.body);
+    formData = {
+        "Are you a citizen of the US" : req.body.citizen,
+        "older on or before election day" : req.body.votingAge,
+        "FirstName" : req.body.firstName,
+        "LastName"  : req.body.lastName,
+        "Suffix"    : req.body.suffix,
+        "MI"        : req.body.middleInitial,
+        "BirthMonth": req.body.birthday.substring(0,2),
+        "BirthDay"  : req.body.birthday.substring(3,5),
+        "BirthYear" : req.body.birthday.substring(6,10),
+        "Sex"       : req.body.sex,
+        "RAddress" : req.body.homeaddress,
+        "ResZip"     : req.body.homezip,
+        "RCity/Town/Village" : req.body.homecity,
+        "County"     : req.body.homecounty,
+        "MAddress"   : req.body.mailaddress,
+        "POBox"     : req.body.mailapt,
+        "MailZip"   : req.body.mailzip,
+        "MCity/Town/Village" : req.body.mailcity,
+        "Have you voted before" : req.body.votingHistory,
+        "Year"      : req.body.votingYear,
+        "VHName"    : req.body.votingName,
+        "AddressChange": req.body.votingAddress,
+        "CountyChange" : req.body.votingCounty,
+        "DMV1"  : req.body.dmvNumber,
+        "SSN"   : req.body.ssn,
+        "I do not have a New York State drivers license or a Social Security number":req.body.noId,
+        "Choose a Party" : req.body.party,
+        "Email" : req.body.email,
+        "Apt#"  : req.body.homeapt
+    }
+    if (req.body.phone) {
+        formData["TeleAreaCode"] = req.body.phone.substring(1,4);
+        formData["TelePrefix"] = req.body.phone.substring(6,9);
+        formData["Telephone"] = req.body.phone.substring(10,14);
+    }
+    if ( req.body.dmvNumber){
+        formData["New York State DMV number"] = "On";
+    }
+    if ( req.body.ssn) {
+        formData["Last four digits of your Social Security number"] =  "On";
+    }
+    if (!req.body.ssn && !req.body.dmvNumber){
+        formData["I do not have a New York State drivers license or a Social Security number"] =  "On";
+    }
 
-    res.json([]);
+    for(var prop in formData) {
+        formData[prop] = formData[prop] || '';
+    }
+
+    /*
+    pdfFiller.generateFDFTemplate(sourcePDF, function(err, fdfData) {
+        if (err) throw err;
+        console.log("In callback (we're done)."); 
+        console.log(err);
+        console.log(fdfData);
+    });
+    */
+    
+    pdfFiller.fillForm(sourcePDF, destinationPDF, formData, function(err) {
+        if (err) throw err;
+        /*
+        console.log("In callback (we're done).");
+        var file = fs.createReadStream(destinationPDF);
+        var stat = fs.statSync(destinationPDF);
+        res.setHeader('Content-Length', stat.size);
+        res.setHeader('Content-Type', 'application/pdf');
+        res.setHeader('Content-Disposition', 'attachment; filename=quote.pdf');
+        file.pipe(res);
+        */
+        res.json({url:destinationPDF.substring(7)});
+    });
+    
+
 });
 
+
+/*
+   app.post('/register', jsonParser, function(req, res) {
+   if (!req.body) return res.sendStatus(400);
+
+   console.log(req.body);
+
+   var destinationPDF = "public/pdf/"+ uuid.v1() +".pdf";
+
+   formData = {
+   FirstName : req.body.firstName
+   };
+
+   fillPdf.generatePdf(formData, sourcePDF, function(err, output) {
+   if (!err) {
+   res.type("application/pdf")
+   res.send(output);
+   } else {
+   console.log(err);
+   }
+   });
+   });
+   */
 
 var server = app.listen(3000, function () {
     var host = server.address().address;

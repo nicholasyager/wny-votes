@@ -1,343 +1,337 @@
 <!DOCTYPE html>
 <html ng-app="wnyVotes">
 
-	<head>
+    <head>
 
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-		<title>WNY Votes</title>
-		<!-- Latest compiled and minified CSS -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+        <title>WNY Votes</title>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 
-		<script type="text/javascript" 
-		  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"> </script>   
-		<script src="js/wnyVotes.js"></script>
+        <script type="text/javascript" 
+                src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.6/angular.min.js"> </script>   
+        <script src="js/wnyVotes.js"></script>
+        <script src="js/FileSaver.min.js"></script>
 
-		<!-- Optional theme -->
-		<!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
-		<link rel="stylesheey" href="css/flat-ui.min.css">
-		<link rel=stylesheet href=css/app.css >
-		<link rel="stylesheet" href="css/carousel.css">
+        <!-- Optional theme -->
+        <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">-->
+        <link rel="stylesheey" href="css/flat-ui.min.css">
+        <link rel=stylesheet href=css/app.css >
+        <link rel="stylesheet" href="css/carousel.css">
 
-		<!-- Latest compiled and minified JavaScript -->
-	</head>
+        <!-- Latest compiled and minified JavaScript -->
+    </head>
 
-	<body>
-		<div ng-app>
-			<div ng-controller="Controller">
-				<div id="myCarousel" class="carousel slide" data-ride="carousel">
-					<div class="carousel-inner" role="listbox">
-						<div class="item active">
-							<img class="first-slide" src="images/skyline2.jpg" alt="Buffalo Skyline">
-							<div class="container">
-								<div class="carousel-caption">
-									<h1>WNY Votes</h1>
-									<p>Learn about WNY politicians, register to vote, and participate in WNY Government.</p>
-									<div class=row>
-										<div class="col-lg-2"></div>
-										<a class="btn btn-lg btn-primary col-xs-12 col-lg-4" ng-click="moveTo('findCandidates')">Find your District</a>
-										<a class="btn btn-lg btn-success col-xs-12 col-lg-4" ng-click="moveTo('registerToVote')">Register to Vote</a>
-										<div class="col-lg-2"></div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id=findCandidates class="section">
-					<h2>Find Your District <span ng-click="moveTo('myCarousel')" class="pull-right glyphicon glyphicon-chevron-up" aria-hidden="true"></span></h2>
-					<div class=vertical-center>
-						<div class="row">
-							<div class="col-sm-2 vcenter"></div>
-							<div class="col-sm-4 vcenter">
-								<form id="formDiv">
-									<div class="row">
-										<div class=form-group-sm>
-											<div class="col-xs-12 col-lg-3">
-												<input ng-model="location.address" type=text class="form-control" placeholder="100" />
-											</div>
-											<div class="col-xs-12 col-lg-7">
-												<input ng-model="location.street" type=text class="form-control" placeholder="Ellicott" />
-											</div>
-											<div class="col-xs-12 col-lg-2">
-												<input ng-model="location.type" type=text class="form-control" placeholder="Street" />
-											</div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="form-group-sm">
-											<div class="col-xs-12 col-lg-6">
-												<input ng-model="location.city" type=text class="form-control" placeholder="Buffalo" />
-											</div>
-											<div class="col-xs-12 col-lg-6">
-												<input ng-model="location.zipcode" type=text class="form-control" placeholder="14216" />
-											</div>
-										</div>
-									</div>
-									<div class=row>
-										<div class=col-xs-4></div>
-										<button ng-click="search(location)" id=submitRepSearch class="btn btn-default col-xs-4">Search</button><span class="failure">{{alert}}</span>
-										<div class=col-xs-4></div>
-									</div>
-								</form>
-							</div><!--
-							--><div class="col-sm-2 vcenter"></div>
-							<div id="map" class="col-sm-3 vcenter">
-								<img src="images/SVGs/legislative_districts.svg"alt=districtmap width=100% />
-							</div>
-							<div class="col-sm-1 vcenter"></div>
-						</div>
-					</div>
-				</div>
-				<div id=meetCandidates class=section>
-					<h2>Meet Your Candidates<span ng-click="moveTo('findCandidates')" class="pull-right glyphicon glyphicon-chevron-up" aria-hidden="true"></span></h2>
-					<div class="row">
-						<div class='candidateContainer col-md-3 col-sm-5' ng-repeat="candidate in candidates">
-							<a href="{{office.website}}">
-								<div class="candidate" >
-									<span class="label {{candidate.party}} pull-right">{{candidate.party}}</span>
-									<p id=name>{{candidate.name}}</p>
-									<p id=title>{{candidate.title | lowercase | capitalize}}</p>
-								</div>
-							</a>
-						</div>
-					</div>
-					<div class=row>
-						<div class="col-xs-2 col-md-4"></div>
-						<button id=pollbutton ng-click="moveTo('pollingLocation')" class="btn btn-lg btn-warning col-xs-8 col-lg-4">Find your Polling Location</button>
-						<div class="col-xs-2 col-md-4"></div>
-					</div>
-				</div>
+    <body>
+        <div ng-app>
+            <div ng-controller="Controller">
+                <div id="myCarousel" class="carousel slide" data-ride="carousel">
+                    <div class="carousel-inner" role="listbox">
+                        <div class="item active">
+                            <img class="first-slide" src="images/skyline2.jpg" alt="Buffalo Skyline">
+                            <div class="container">
+                                <div class="carousel-caption">
+                                    <h1>WNY Votes</h1>
+                                    <p>Learn about WNY politicians, register to vote, and participate in WNY Government.</p>
+                                    <div class=row>
+                                        <div class="col-lg-2"></div>
+                                        <a class="btn btn-lg btn-primary col-xs-12 col-lg-4" ng-click="moveTo('findCandidates')">Find your District</a>
+                                        <a class="btn btn-lg btn-success col-xs-12 col-lg-4" ng-click="moveTo('registerToVote')">Register to Vote</a>
+                                        <div class="col-lg-2"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id=findCandidates class="section">
+                    <h2>Find Your District <span ng-click="moveTo('myCarousel')" class="pull-right glyphicon glyphicon-chevron-up" aria-hidden="true"></span></h2>
+                    <div class=vertical-center>
+                        <div class="row">
+                            <div class="col-sm-2 vcenter"></div>
+                            <div class="col-sm-4 vcenter">
+                                <form id="formDiv">
+                                    <div class="row">
+                                        <div class=form-group-sm>
+                                            <div class="col-xs-12 col-lg-3">
+                                                <input ng-model="location.address" type=text class="form-control" placeholder="100" />
+                                            </div>
+                                            <div class="col-xs-12 col-lg-7">
+                                                <input ng-model="location.street" type=text class="form-control" placeholder="Ellicott" />
+                                            </div>
+                                            <div class="col-xs-12 col-lg-2">
+                                                <input ng-model="location.type" type=text class="form-control" placeholder="Street" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="form-group-sm">
+                                            <div class="col-xs-12 col-lg-6">
+                                                <input ng-model="location.city" type=text class="form-control" placeholder="Buffalo" />
+                                            </div>
+                                            <div class="col-xs-12 col-lg-6">
+                                                <input ng-model="location.zipcode" type=text class="form-control" placeholder="14216" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class=row>
+                                        <div class=col-xs-4></div>
+                                        <button ng-click="search(location)" id=submitRepSearch class="btn btn-default col-xs-4">Search</button><span class="failure">{{alert}}</span>
+                                        <div class=col-xs-4></div>
+                                    </div>
+                                </form>
+                            </div><!--
+                            --><div class="col-sm-2 vcenter"></div>
+                            <div id="map" class="col-sm-3 vcenter">
+                                <img src="images/SVGs/legislative_districts.svg"alt=districtmap width=100% />
+                            </div>
+                            <div class="col-sm-1 vcenter"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id=meetCandidates class=section>
+                    <h2>Meet Your Candidates<span ng-click="moveTo('findCandidates')" class="pull-right glyphicon glyphicon-chevron-up" aria-hidden="true"></span></h2>
+                    <div class="row">
+                        <div class='candidateContainer col-md-3 col-sm-5' ng-repeat="candidate in candidates">
+                            <a href="{{office.website}}">
+                                <div class="candidate" >
+                                    <span class="label {{candidate.party}} pull-right">{{candidate.party}}</span>
+                                    <p id=name>{{candidate.name}}</p>
+                                    <p id=title>{{candidate.title | lowercase | capitalize}}</p>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class=row>
+                        <div class="col-xs-2 col-md-4"></div>
+                        <button id=pollbutton ng-click="moveTo('pollingLocation')" class="btn btn-lg btn-warning col-xs-8 col-lg-4">Find your Polling Location</button>
+                        <div class="col-xs-2 col-md-4"></div>
+                    </div>
+                </div>
 
-				<div id=pollingLocation class=section>
-					<h2>Your Polling Location<span ng-click="moveTo('meetCandidates')" class="pull-right glyphicon glyphicon-chevron-up" aria-hidden="true"></span></h2>
-					<div class="row card" ng-repeat="location in pollingLocations">
-						<div class="col-xs-12  col-md-6" >
-							<div >
-								<address>
-									<h3>{{location.defaultPollingPlace.name | lowercase | capitalize}}</h3>
-									{{location.defaultPollingPlace.streetAddress.address1 | lowercase | capitalize}}<br>
-									{{location.defaultPollingPlace.streetAddress.city | lowercase | capitalize}}, 
-									{{location.defaultPollingPlace.streetAddress.state}} 
-									{{location.defaultPollingPlace.streetAddress.zip }} <br>
-									<div class=detail>{{location.defaultPollingPlace.directions.englishText | lowercase | capitalize}}</div>
-									<br>
-								</address>
-							</div>
-						</div>
-						<div class="col-xs-12  col-md-6">
-							<div class="google-maps">
-								<iframe src="https://www.google.com/maps?hl=en&q={{location.mapHref}}&output=embed" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> 
-							</div>
-						</div>
-					</div>
-				</div>
-				<div id=registerToVote class=section>
-					<h2>Register To Vote</h2>
-					<div class=row>
-						<div class="col-sm-4">
-							<div class="form-group">
-								<h4>Qualifications</h4>
-								<label for=inputCitizen class="col-sm-4 control-label">Are you a U.S. Citizen?</label>
-								<div class="radio">
-									<label class=radio-inline><input ng-model=applicant.citizen value=yes name=optionsCitizen id=citizenY type="radio" >Yes</label>
-									<label class=radio-inline><input ng-model=applicant.citizen value=no name=optionsCitizen id=citizenN type="radio" >No</label>
-								</div><br>
-								<label for=inputCitizen class="col-sm-4 control-label">Will you be 18 years of age or older on or before election day?</label>
-								<div class="radio">
-									<label class=radio-inline><input name=age ng-model=applicant.votingAge value=yes id=Citizen type="radio">Yes</label>
-									<label class=radio-inline><input name=age ng-model=applicnat.votingAge value=no id =Citizen type="radio">No</label>
-								</div><br>
-								<br>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
+                <div id=pollingLocation class=section>
+                    <h2>Your Polling Location<span ng-click="moveTo('meetCandidates')" class="pull-right glyphicon glyphicon-chevron-up" aria-hidden="true"></span></h2>
+                    <div class="row card" ng-repeat="location in pollingLocations">
+                        <div class="col-xs-12  col-md-6" >
+                            <div >
+                                <address>
+                                    <h3>{{location.defaultPollingPlace.name | lowercase | capitalize}}</h3>
+                                    {{location.defaultPollingPlace.streetAddress.address1 | lowercase | capitalize}}<br>
+                                    {{location.defaultPollingPlace.streetAddress.city | lowercase | capitalize}}, 
+                                    {{location.defaultPollingPlace.streetAddress.state}} 
+                                    {{location.defaultPollingPlace.streetAddress.zip }} <br>
+                                    <div class=detail>{{location.defaultPollingPlace.directions.englishText | lowercase | capitalize}}</div>
+                                    <br>
+                                </address>
+                            </div>
+                        </div>
+                        <div class="col-xs-12  col-md-6">
+                            <div class="google-maps">
+                                <iframe src="https://www.google.com/maps?hl=en&q={{location.mapHref}}&output=embed" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id=registerToVote class=section>
+                    <h2>Register To Vote</h2>
+                    <div class=row>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <h4>Qualifications</h4>
+                                <label for=inputCitizen class="col-sm-4 control-label">Are you a U.S. Citizen?</label>
+                                <div class="radio">
+                                    <label class=radio-inline><input ng-model=applicant.citizen value=Yes name=optionsCitizen id=citizenY type="radio" >Yes</label>
+                                    <label class=radio-inline><input ng-model=applicant.citizen value=No name=optionsCitizen id=citizenN type="radio" >No</label>
+                                </div><br>
+                                <label for=inputCitizen class="col-sm-4 control-label">Will you be 18 years of age or older on or before election day?</label>
+                                <div class="radio">
+                                    <label class=radio-inline><input name=age ng-model=applicant.votingAge value=Yes_2 id=Citizen type="radio">Yes</label>
+                                    <label class=radio-inline><input name=age ng-model=applicnat.votingAge value=No_2 id =Citizen type="radio">No</label><br>
+                                </div><br>
+                                <br><br>
+                                <h4>Political Party</h4>
+                                <div class="radio" class="col-sm-12">
+                                    <label class=radio-inline><input name=party ng-model=applicant.party value=0 type="radio" >Democratic party</label>
+                                    <label class=radio-inline><input name=party ng-model=applicant.party value=1 type="radio" >Republican Party</label>
+                                    <label class=radio-inline><input name=party ng-model=applicant.party value=2 type="radio" >Conservative Party</label>
+                                    <label class=radio-inline><input name=party ng-model=applicant.party  value=3 type="radio" >Green Party</label>
+                                    <label class=radio-inline><input name=party ng-model=applicant.party value=4 type="radio" >Working Families Party</label>
+                                    <label class=radio-inline><input name=party ng-model=applicant.party value=5 type="radio" >Independence Party</label>
+                                    <label class=radio-inline><input name=party ng-model=applicant.party value=6 type="radio" >Woman's Equality Party</label>
+                                    <label class=radio-inline><input name=party ng-model=applicant.party value=7 type="radio" >Reform Party</label>
+                                    <label class=radio-inline><input name=party ng-model=applicant.party value=8 type="radio" >Other Party</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
 
-								<h4>Identity</h4>
-								<label for="inputFirstName" class="col-sm-4 control-label">First Name</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.firstName type="text" class="form-control" id="inputFirstName" placeholder="John">
-								</div>
-								<label for="inputMiddleInitial" class="col-sm-4 control-label">Middle Initial</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.middleInitial type="text" class="form-control" id="inputMiddleInitial" placeholder="J">
-								</div>
-								<label for="inputLastName" class="col-sm-4 control-label">Last Name</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.lastName type="text" class="form-control" id="inputLastName" placeholder="Doe">
-								</div>
-								<label for="inputSuffix" class="col-sm-4 control-label">Suffix</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.suffix type="text" class="form-control" id="inputSuffix" placeholder="Jr.">
-								</div>
-								<label for="inputBirthDate" class="col-sm-4 control-label">Birth Date (mm/dd/yyyy)</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.birthday type="text" class="form-control" id="inputBirthDay" placeholder="09/01/1990"><br>
-								</div>
-								<label for=inputCitizen class="col-sm-4 control-label">Sex</label>
-								<div class="radio">
-									<label class=radio-inline>
-										<input value="male" name=sex ng-model=applicant.sex id=sexM type="radio">M
-									</label>
-									<label class=radio-inline>
-										<input value="female" name=sex ng-model=applicant.sex id=sexF type="radio">F
-									</label>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
+                                <h4>Identity</h4>
+                                <label for="inputFirstName" class="col-sm-4 control-label">First Name</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.firstName type="text" class="form-control" id="inputFirstName" placeholder="John">
+                                </div>
+                                <label for="inputMiddleInitial" class="col-sm-4 control-label">Middle Initial</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.middleInitial type="text" class="form-control" id="inputMiddleInitial" placeholder="J">
+                                </div>
+                                <label for="inputLastName" class="col-sm-4 control-label">Last Name</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.lastName type="text" class="form-control" id="inputLastName" placeholder="Doe">
+                                </div>
+                                <label for="inputSuffix" class="col-sm-4 control-label">Suffix</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.suffix type="text" class="form-control" id="inputSuffix" placeholder="Jr.">
+                                </div>
+                                <label for="inputBirthDate" class="col-sm-4 control-label">Birth Date (mm/dd/yyyy)</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.birthday type="text" class="form-control" id="inputBirthDay" placeholder="09/01/1990"><br>
+                                </div>
+                                <label for=inputCitizen class="col-sm-4 control-label">Sex</label>
+                                <div class="radio col-sm-8">
+                                    <label class=radio-inline>
+                                        <input value="M" name=sex ng-model=applicant.sex id=sexM type="radio">M
+                                    </label>
+                                    <label class=radio-inline>
+                                        <input value="F" name=sex ng-model=applicant.sex id=sexF type="radio">F
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
 
-								<h4>Identification <h6>(You must make 1 selection)</h6></h4>
-								<label for="inputDMVNumber" class="col-sm-4 control-label">NYS DMV Number</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.dmvNumber type="number" class="form-control" id="inputDMVNumber" placeholder="123456789">
-								</div>
-								<label for="inputSSN" class="col-sm-4 control-label">Last 4 Digits of SSN</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.ssn type="number" class="form-control" id="inputSSN" placeholder="1234"><br>
-								</div>
-								<div class="checkbox col-sm-12">
-									<label>
-										<input ng-model=applicant.noId type="checkbox"> I do not have a drivers license or SSN.
-									</label>
-								</div>
-								<label for="inputEmail" class="col-sm-4 control-label">Email</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.email type="email" class="form-control" id="inputEmail" placeholder="John@doe.com">
-								</div>
-								<label for="inputphone" class="col-sm-4 control-label">Phone Number</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.phone type="tel" class="form-control" id="inputphone" placeholder="(716) 876-0000"><br>
-								</div>
+                                <h4>Identification <h6>(You must make 1 selection)</h6></h4>
+                                <label for="inputDMVNumber" class="col-sm-4 control-label">NYS DMV Number</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.dmvNumber type="number" class="form-control" id="inputDMVNumber" placeholder="123456789"><br>
+                                </div>                                <label for="inputSSN" class="col-sm-4 control-label">Last 4 Digits of SSN</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.ssn type="number" class="form-control" id="inputSSN" placeholder="1234"><br>
+                                </div>
+                                <div class="checkbox col-sm-12">
+                                    <label>
+                                        <input value="On" ng-model=applicant.noId type="checkbox"> I do not have a drivers license or SSN.
+                                    </label>
+                                </div>
+                                <label for="inputEmail" class="col-sm-4 control-label">Email</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.email type="email" class="form-control" id="inputEmail" placeholder="John@doe.com">
+                                </div>
+                                <label for="inputphone" class="col-sm-4 control-label">Phone Number</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.phone type="tel" class="form-control" id="inputphone" placeholder="(716) 876-0000"><br>
+                                </div>
 
-							</div>
-						</div>
-					</div>
-					<div class=row>
-						<div class="col-sm-4">
-							<div class="form-group">
-								<h4>Home Address</h4>
-								<label for="inputAddress" class="col-sm-4 control-label">Address</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.home.address type="text" class="form-control" id="inputAddress" placeholder="123 Elmwood Ave.">
-								</div>
-								<label for="inputApt" class="col-sm-4 control-label">Apt. Number</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.home.apt type="text" class="form-control" id="inputApt" placeholder="99">
-								</div>
-								<label for="inputCity" class="col-sm-4 control-label">City</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.home.city type="text" class="form-control" id="inputCity"  placeholder="Buffalo">
-								</div>
-								<label for="inputZip" class="col-sm-4 control-label">Zip</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.home.zip type="text" class="form-control" id="inputZip" placeholder="14222">
-								</div>
-								<label for="inputCounty" class="col-sm-4 control-label">NYS County</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.home.county type="text" class="form-control" id="inputCounty" placeholder="Erie" value=Erie>
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
+                            </div>
+                        </div>
+                    </div>
+                    <div class=row>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <h4>Home Address</h4>
+                                <label for="inputAddress" class="col-sm-4 control-label">Address</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.homeaddress type="text" class="form-control" id="inputAddress" placeholder="123 Elmwood Ave.">
+                                </div>
+                                <label for="inputApt" class="col-sm-4 control-label">Apt. Number</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.homeapt type="text" class="form-control" id="inputApt" placeholder="99">
+                                </div>
+                                <label for="inputCity" class="col-sm-4 control-label">City</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.homecity type="text" class="form-control" id="inputCity"  placeholder="Buffalo">
+                                </div>
+                                <label for="inputZip" class="col-sm-4 control-label">Zip</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.homezip type="text" class="form-control" id="inputZip" placeholder="14222">
+                                </div>
+                                <label for="inputCounty" class="col-sm-4 control-label">NYS County</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.homecounty type="text" class="form-control" id="inputCounty" placeholder="Erie" value=Erie>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
 
-								<h4>Mailing Address <h6>(If different from home address)</h6></h4>
-								<label for="inputAddress" class="col-sm-4 control-label">Address</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.mail.address type="text" class="form-control" id="inputAddress" placeholder="123 Elmwood Ave.">
-								</div>
-								<label for="inputApt" class="col-sm-4 control-label">Apt. Number</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.mail.apt type="text" class="form-control" id="inputApt" placeholder="99">
-								</div>
-								<label for="inputCity" class="col-sm-4 control-label">City</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.mail.city type="text" class="form-control" id="inputCity"  placeholder="Buffalo">
-								</div>
-								<label for="inputZip" class="col-sm-4 control-label">Zip</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.mail.zip type="text" class="form-control" id="inputZip" placeholder="14222">
-								</div>
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="form-group">
-								<h4>Voting History <h6>(Skip if not applicable)</h6></h4>
-								<label for=inputCitizen class="col-sm-4 control-label">Have you ever voted?</label>
-								<div class="radio" class="col-sm-8">
-									<label class=radio-inline><input name=history ng-model=applicant.votingHistory value="yes" id=citizenY type="radio" >Yes</label>
-									<label class=radio-inline><input name=history  ng-model=applicant.votingHistory value="no" id=citizenN type="radio" >No</label>
-								</div><br>
-								<label for="inputYear" class="col-sm-4 control-label">What year?</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.votingYear type="number" class="form-control" id="inputFormerName" placeholder="2008">
-								</div>
-								<label for="inputFormerName" class="col-sm-4 control-label">Former Name</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.votingName type="text" class="form-control" id="inputFormerName" placeholder="Johnny Appleseed">
-								</div>
-								<label for="inputFormerAddress" class="col-sm-4 control-label">Former Address</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.votingAddress type="text" class="form-control" id="inputFormerAddress" placeholder="684 Delaware Ave, Buffalo, NY 14222">
-								</div>
-								<label for="inputFormerCounty" class="col-sm-4 control-label">Former County or State</label>
-								<div class="col-sm-8">
-									<input ng-model=applicant.votingCounty type="text" class="form-control" id="inputFormerCounty" placeholder="Monroe"><br>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class=row>
-						<div class="col-sm-12">
-							<div class="form-group">
-								<h4>Political Party</h4>
-								<div class="radio" class="col-sm-12">
-									<label class=radio-inline><input name=party ng-model=applicant.party value=democratic type="radio" >Democratic party</label>
-									<label class=radio-inline><input name=party ng-model=applicant.party value=republican type="radio" >Republican Party</label>
-									<label class=radio-inline><input name=party ng-model=applicant.party value=conservative type="radio" >Conservative Party</label>
-									<label class=radio-inline><input name=party ng-model=applicant.party  value=green type="radio" >Green Party</label>
-									<label class=radio-inline><input name=party ng-model=applicant.party value=working type="radio" >Working Families Party</label>
-									<label class=radio-inline><input name=party ng-model=applicant.party value=independence type="radio" >Independence Party</label>
-									<label class=radio-inline><input name=party ng-model=applicant.party value=womens type="radio" >Woman's Equality Party</label>
-									<label class=radio-inline><input name=party ng-model=applicant.party value=reform type="radio" >Reform Party</label>
-									<label class=radio-inline><input name=party ng-model=applicant.party value=other type="radio" >Other Party</label>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class=row>
-						<div class="col-sm-1"></div>
-						<div class="col-sm-10">
-							<div class="form-group center-block text-center">
-								<input ng-click="register(applicant)" type=submit class="btn btn-lg btn-primary">
-							</div>
-						</div>
-						<div class="col-sm-1"></div>
-					</div>
+                                <h4>Mailing Address <h6>(If different from home address)</h6></h4>
+                                <label for="inputAddress" class="col-sm-4 control-label">Address</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.mailaddress type="text" class="form-control" id="inputAddress" placeholder="123 Elmwood Ave.">
+                                </div>
+                                <label for="inputApt" class="col-sm-4 control-label">P.O. Box</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.mailapt type="text" class="form-control" id="inputApt" placeholder="99">
+                                </div>
+                                <label for="inputCity" class="col-sm-4 control-label">City</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.mailcity type="text" class="form-control" id="inputCity"  placeholder="Buffalo">
+                                </div>
+                                <label for="inputZip" class="col-sm-4 control-label">Zip</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.mailzip type="text" class="form-control" id="inputZip" placeholder="14222">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="form-group">
+                                <h4>Voting History <h6>(Skip if not applicable)</h6></h4>
+                                <label for=inputCitizen class="col-sm-4 control-label">Have you ever voted?</label>
+                                <div class="radio" class="col-sm-8">
+                                    <label class=radio-inline><input name=history ng-model=applicant.votingHistory value="Yes_3" id=citizenY type="radio" >Yes</label>
+                                    <label class=radio-inline><input name=history  ng-model=applicant.votingHistory value="No_3" id=citizenN type="radio" >No</label>
+                                </div><br>
+                                <label for="inputYear" class="col-sm-4 control-label">What year?</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.votingYear type="number" class="form-control" id="inputFormerName" placeholder="2008">
+                                </div>
+                                <label for="inputFormerName" class="col-sm-4 control-label">Former Name</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.votingName type="text" class="form-control" id="inputFormerName" placeholder="Johnny Appleseed">
+                                </div>
+                                <label for="inputFormerAddress" class="col-sm-4 control-label">Former Address</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.votingAddress type="text" class="form-control" id="inputFormerAddress" placeholder="684 Delaware Ave, Buffalo, NY 14222"><br>
+                                </div>
+                                <label for="inputFormerCounty" class="col-sm-4 control-label">Former County or State</label>
+                                <div class="col-sm-8">
+                                    <input ng-model=applicant.votingCounty type="text" class="form-control" id="inputFormerCounty" placeholder="Monroe"><br>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class=row>
+                        <div class="col-sm-1"></div>
+                        <div class="col-sm-10">
+                            <div class="form-group center-block text-center">
+                                <input ng-click="register(applicant)" type=submit class="btn btn-lg btn-primary">
+                            </div>
+                        </div>
+                        <div class="col-sm-1"></div>
+                    </div>
 
-				</div>
-			</div>
+                </div>
+            </div>
 
-			<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-			<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-			<!-- Include all compiled plugins (below), or include individual files as needed -->
-			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-			<script>
+            <script>
 
 
 $(document).ready(function(){
-	var height = "innerHeight" in window 
-		? window.innerHeight
-		: document.documentElement.offsetHeight;
+    var height = "innerHeight" in window 
+        ? window.innerHeight
+        : document.documentElement.offsetHeight;
 
-	$(".carousel-inner > .item").height(height);
-	$(".section").height(height);
+    $(".carousel-inner > .item").height(height);
+    $(".section").height(height);
 });
 
 /*
@@ -366,12 +360,12 @@ $(document).ready(function(){
    }
    });
    });
-							// jQuery methods go here...
+                                // jQuery methods go here...
 
-							})
+                                })
  */;
-			</script>
+            </script>
 
-	</body>
+    </body>
 
 </html>
