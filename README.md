@@ -33,4 +33,4 @@ and then run the application
 node.js
 ```
 
-[address]:http:\\wny-votes.nicholasyager.com
+[address]: http://wny-votes.nicholasyager.com
