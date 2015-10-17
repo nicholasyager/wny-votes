@@ -1,3 +1,4 @@
 *.swp
 *.R*
 node_modules/*
+public/pdf/*.pdf

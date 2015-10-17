@@ -10,11 +10,9 @@
   "author": "Nicholas A. Yager",
   "license": "ISC",
   "dependencies": {
-    "angular-file-saver": "^0.7.0",
     "body-parser": "^1.14.1",
     "bootstrap": "^3.3.5",
     "express": "^4.13.3",
-    "fill-pdf": "^0.1.3",
     "mysql": "^2.9.0",
     "node-uuid": "^1.4.3",
     "pdffiller": "0.0.7",
